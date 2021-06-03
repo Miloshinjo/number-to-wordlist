@@ -1,0 +1,15 @@
+.container {
+  @apply h-screen flex flex-col;
+}
+
+.header {
+  @apply text-center p-4 border-b;
+}
+
+.headerHeading {
+  @apply text-xl font-black;
+}
+
+.main {
+  @apply flex items-center justify-center h-full;
+}

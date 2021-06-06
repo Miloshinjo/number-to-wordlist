@@ -8,6 +8,12 @@ type Props = {
   title: string;
 };
 
+/**
+ * App layout component used on pages/routes.
+ *
+ * @param title Page/route title.
+ * @returns     Basic app layout component.
+ */
 export function Layout({ children, title }: Props): JSX.Element {
   return (
     <div className={styles.container}>

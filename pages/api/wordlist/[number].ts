@@ -1,23 +1,37 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { WordlistResult } from '../../../models/wordlist';
+import { numberToWordlist } from '../../../utils/numberToWordlist';
 
-type Data = {
-  data: string;
-};
-
-function handleGet(req: NextApiRequest, res: NextApiResponse<Data>): void {
+/**
+ * Handles GET request to this endpoint (/api/wordlist/:number)
+ *
+ * @param req Request object
+ * @param res Response object
+ */
+function handleGet(
+  req: NextApiRequest,
+  res: NextApiResponse<WordlistResult>
+): void {
   const {
     query: { number },
   } = req;
 
-  console.log(number);
+  const wordlist = numberToWordlist(Number(number));
 
-  res.json({ data: 'king' });
+  res.json({
+    wordlist,
+  });
 }
 
+/**
+ * Handler for all request to this endpoint (/api/wordlist/:number)
+ *
+ * @param req Request object
+ * @param res Response object
+ */
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse<WordlistResult>
 ): void {
   const { method } = req;
 

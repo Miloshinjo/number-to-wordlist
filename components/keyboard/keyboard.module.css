@@ -1,13 +1,13 @@
 .container {
-  @apply p-4 rounded grid grid-cols-3 gap-6;
+  @apply p-6 grid grid-cols-3 gap-4 shadow;
 }
 
 .button {
-  @apply flex flex-col items-center justify-center border-gray-900 border w-16 h-16 p-16;
+  @apply flex flex-col items-center justify-center border-gray-900 w-8 h-8 p-8;
 }
 
 .buttonNumber {
-  @apply text-4xl font-semibold;
+  @apply text-2xl font-semibold;
 }
 
 .buttonLetters {

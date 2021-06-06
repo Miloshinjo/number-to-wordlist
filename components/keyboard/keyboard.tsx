@@ -2,6 +2,11 @@ import { items } from './items';
 
 import styles from './keyboard.module.css';
 
+/**
+ * Phone-like interactive keyboard.
+ *
+ * @returns Phone-like keyboard component.
+ */
 export function Keyboard(): JSX.Element {
   return (
     <div className={styles.container}>

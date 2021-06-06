@@ -1,3 +1,6 @@
+/**
+ * Array of items for the phone keyboard component.
+ */
 export const items = [
   {
     number: 1,
@@ -34,5 +37,17 @@ export const items = [
   {
     number: 9,
     letters: 'wxyz',
+  },
+  {
+    number: '*',
+    letters: '',
+  },
+  {
+    number: 0,
+    letters: '⎵',
+  },
+  {
+    number: '#',
+    letters: '',
   },
 ];

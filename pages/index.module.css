@@ -1,4 +1,35 @@
 .container {
-  @apply grid justify-items-center items-center w-full h-full;
-  grid-template-columns: 25% 1fr 25%;
+  display: grid;
+  grid-template-areas:
+  'header header'
+  'main sidebar'
+  'footer footer';
+  grid-template-columns: 1fr 40%;
+  grid-template-rows: min-content 1fr min-content;
+  height: 100vh;
+  @apply h-screen overflow-hidden;
+}
+
+.main {
+  grid-area: main;
+  @apply flex items-center justify-center;
+}
+
+.header {
+  grid-area: header;
+  @apply p-4 border-b;
+}
+
+.headerHeading {
+  @apply font-black text-lg;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  @apply border-l overflow-auto;
+}
+
+.footer {
+  grid-area: footer;
+  @apply text-xs px-4 py-2 bg-gray-200 font-semibold;
 }

@@ -26,16 +26,19 @@ export function Form({ fetchWordlist }: Props): JSX.Element {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <label className={styles.label}>
         Number input
         <input
           type="number"
           className={styles.input}
           placeholder="Enter a number to convert"
-          {...register('number')}
+          {...register('number', { required: true, min: 0 })}
         />
       </label>
+      <button className={styles.submitButton} type="submit">
+        Submit
+      </button>
     </form>
   );
 }

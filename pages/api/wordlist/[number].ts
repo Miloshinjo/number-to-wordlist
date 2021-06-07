@@ -2,6 +2,8 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { WordlistResult } from '../../../models/wordlist';
 import { numberToWordlist } from '../../../utils/numberToWordlist';
 
+import { dictionary } from '../../../data/englishWords';
+
 export const config = {
   api: {
     bodyParser: false,
@@ -28,8 +30,12 @@ function handleGet(
 
   const wordlist = numberToWordlist(Number(number));
 
+  // const filteredWordlist = wordlist.filter((value) =>
+  //   dictionary.includes(value)
+  // );
+
   res.status(200).json({
-    wordlist,
+    wordlist: wordlist,
   });
 }
 

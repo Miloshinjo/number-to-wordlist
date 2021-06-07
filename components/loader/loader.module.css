@@ -1,0 +1,12 @@
+.loader {
+  @apply w-5 h-5 border-gray-800 border-solid rounded-full;
+  border-left-width: 2px;
+  border-top-width: 2px;
+  animation: spin 0.2s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

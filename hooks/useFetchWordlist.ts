@@ -17,14 +17,15 @@ function fetcher(url: string): Promise<WordlistResult> {
  * @returns A tuple of a wordlist and a fetch function for it
  */
 export function useFetchWordlist(): [
-  WordlistResult['wordlist'],
+  WordlistResult['wordlist'] | null,
   (number: number) => Promise<void>,
   boolean,
   string
 ] {
   const [isFetching, setFetching] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
-  const [wordlist, setWordlist] = useState<WordlistResult['wordlist']>([]);
+  const [wordlist, setWordlist] =
+    useState<WordlistResult['wordlist'] | null>(null);
 
   async function fetchWordlist(number: number): Promise<void> {
     setFetching(true);

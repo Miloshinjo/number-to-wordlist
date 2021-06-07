@@ -1,11 +1,12 @@
 import { Wordlist } from '../../models/wordlist';
+import { Loader } from '../loader/loader';
 
 import styles from './output.module.css';
 
 type Props = {
   isFetching: boolean;
   error: string;
-  wordlist: Wordlist;
+  wordlist: Wordlist | null;
 };
 
 /**
@@ -21,17 +22,28 @@ export function Output({ isFetching, error, wordlist }: Props): JSX.Element {
     return <div>{error}</div>;
   }
 
+  if (wordlist === null) {
+    return <div>No result</div>;
+  }
+
   if (isFetching === true) {
-    return <div>Loading..</div>;
+    return (
+      <div className={styles.fetchingContainer}>
+        <Loader />
+      </div>
+    );
   }
 
   if (wordlist.length === 0) {
-    <div>No result</div>;
+    return <div>no result</div>;
   }
 
   return (
-    <div>
-      <h2>Number of words: {wordlist.length}</h2>
+    <div className={styles.container}>
+      <h2 className={styles.heading}>
+        Number of words:{' '}
+        <span className={styles.headingNumber}>{wordlist.length}</span>
+      </h2>
       <ul className={styles.list}>
         {wordlist.map((word) => {
           return (

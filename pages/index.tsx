@@ -1,7 +1,11 @@
 import { Form } from '../components/form/form';
+import { Keyboard } from '../components/keyboard/keyboard';
 
 import { Layout } from '../components/layout/layout';
+import { Output } from '../components/output/output';
 import { useFetchWordlist } from '../hooks/useFetchWordlist';
+
+import styles from './index.module.css';
 
 /**
  * Application home page route.
@@ -9,14 +13,20 @@ import { useFetchWordlist } from '../hooks/useFetchWordlist';
  * @returns App home page component.
  */
 export default function Home(): JSX.Element {
-  const [wordlist, fetchWordlist] = useFetchWordlist();
+  const [wordlist, fetchWordlist, isFetching, error] = useFetchWordlist();
 
   return (
     <Layout title="Home">
-      <div className="grid grid-cols-2 gap-6 bg-green-100 p-6 rounded">
+      <div className={styles.container}>
+        <div className="flex p-6 rounded">
+          <Keyboard />
+        </div>
+
         <Form fetchWordlist={fetchWordlist} />
 
-        {wordlist}
+        <div className="h-full w-full border-l">
+          <Output wordlist={wordlist} isFetching={isFetching} error={error} />
+        </div>
       </div>
     </Layout>
   );

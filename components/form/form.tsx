@@ -15,7 +15,8 @@ type Props = {
 /**
  * Form component that takes user's input and submits it to the backend
  *
- * @returns A form that submits the number to the backend for interpolation
+ * @param   fetchWordlist Fetches the wordlist from the backend
+ * @returns               A form that submits the number to the backend for interpolation
  */
 export function Form({ fetchWordlist }: Props): JSX.Element {
   const { register, handleSubmit } = useForm<Inputs>();

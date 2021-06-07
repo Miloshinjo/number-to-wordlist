@@ -1,3 +1,5 @@
+import { Wordlist } from '../models/wordlist';
+
 type LettersMatrix = Array<Array<string>>;
 
 const mapping = new Map<number, string | Array<string>>([
@@ -48,8 +50,8 @@ function convertNumberToDigits(number: number): Array<number> {
  * @param number A number to turn into a wordlist
  * @returns A list of words that are possible combinations of a given number
  */
-export function numberToWordlist(number: number): Array<string> {
-  if (number < 0) return [];
+export function numberToWordlist(number: number): Wordlist {
+  if (number < 2) return [];
 
   const digits = convertNumberToDigits(number);
 
@@ -57,5 +59,5 @@ export function numberToWordlist(number: number): Array<string> {
     .map((digit) => mapping.get(digit))
     .filter(Boolean) as LettersMatrix;
 
-  return combineArrays(lettersMatrix);
+  return combineArrays(lettersMatrix).sort();
 }

@@ -1,0 +1,4 @@
+.container {
+  @apply grid justify-items-center items-center w-full h-full;
+  grid-template-columns: 25% 1fr 25%;
+}

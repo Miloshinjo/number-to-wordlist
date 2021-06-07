@@ -1,3 +1,5 @@
+export type Wordlist = Array<string>;
+
 export type WordlistResult = {
-  wordlist: Array<string>;
+  wordlist: Wordlist;
 };

@@ -18,15 +18,28 @@ function fetcher(url: string): Promise<WordlistResult> {
  */
 export function useFetchWordlist(): [
   WordlistResult['wordlist'],
-  (number: number) => Promise<void>
+  (number: number) => Promise<void>,
+  boolean,
+  string
 ] {
+  const [isFetching, setFetching] = useState<boolean>(false);
+  const [error, setError] = useState<string>('');
   const [wordlist, setWordlist] = useState<WordlistResult['wordlist']>([]);
 
   async function fetchWordlist(number: number): Promise<void> {
-    const { wordlist } = await fetcher(`/api/wordlist/${number}`);
+    setFetching(true);
+    try {
+      const { wordlist } = await fetcher(`/api/wordlist/${number}`);
 
-    setWordlist(wordlist);
+      setError('');
+      setWordlist(wordlist);
+    } catch (error) {
+      console.error(error);
+      setError('An error occured.');
+    } finally {
+      setFetching(false);
+    }
   }
 
-  return [wordlist, fetchWordlist];
+  return [wordlist, fetchWordlist, isFetching, error];
 }

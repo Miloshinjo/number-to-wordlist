@@ -2,6 +2,12 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { WordlistResult } from '../../../models/wordlist';
 import { numberToWordlist } from '../../../utils/numberToWordlist';
 
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
 /**
  * Handles GET request to this endpoint (/api/wordlist/:number)
  *
@@ -16,9 +22,13 @@ function handleGet(
     query: { number },
   } = req;
 
+  if (!number) {
+    res.status(404).end('Please provide a number to convert');
+  }
+
   const wordlist = numberToWordlist(Number(number));
 
-  res.json({
+  res.status(200).json({
     wordlist,
   });
 }

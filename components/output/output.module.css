@@ -1,0 +1,7 @@
+.list {
+  @apply max-h-64 overflow-auto p-4 flex max-w-prose flex-wrap uppercase;
+}
+
+.word {
+  @apply m-2 text-sm font-medium;
+}

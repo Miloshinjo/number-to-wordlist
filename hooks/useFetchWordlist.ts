@@ -20,7 +20,7 @@ function fetcher(url: string): Promise<WordlistResult> {
  */
 function generateWordlistUrl(
   number: number,
-  shouldUseDictionary: boolean
+  shouldUseDictionary: boolean,
 ): string {
   const baseUrl = `/api/wordlist/${number}`;
 
@@ -40,7 +40,7 @@ export function useFetchWordlist(): [
   WordlistResult['wordlist'] | null,
   (number: number, shouldUseDictionary: boolean) => Promise<void>,
   boolean,
-  string
+  string,
 ] {
   const [isFetching, setFetching] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
@@ -49,12 +49,12 @@ export function useFetchWordlist(): [
 
   async function fetchWordlist(
     number: number,
-    shouldUseDictionary: boolean
+    shouldUseDictionary: boolean,
   ): Promise<void> {
     setFetching(true);
     try {
       const { wordlist } = await fetcher(
-        generateWordlistUrl(number, shouldUseDictionary)
+        generateWordlistUrl(number, shouldUseDictionary),
       );
 
       setError('');

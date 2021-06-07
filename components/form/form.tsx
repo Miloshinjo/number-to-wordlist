@@ -1,15 +1,17 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { WordlistResult } from '../../models/wordlist';
-import { Keyboard } from '../keyboard/keyboard';
 
 import styles from './form.module.css';
 
 type Inputs = {
   number: number;
+  shouldUseDictionary: boolean;
 };
 
 type Props = {
-  fetchWordlist: (number: number) => Promise<void>;
+  fetchWordlist: (
+    number: number,
+    shouldUseDictionary: boolean
+  ) => Promise<void>;
 };
 
 /**
@@ -22,12 +24,12 @@ export function Form({ fetchWordlist }: Props): JSX.Element {
   const { register, handleSubmit } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    fetchWordlist(data.number);
+    fetchWordlist(data.number, data.shouldUseDictionary);
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-      <label className={styles.label}>
+      <label className={styles.inputLabel}>
         Number input
         <input
           type="number"
@@ -35,6 +37,14 @@ export function Form({ fetchWordlist }: Props): JSX.Element {
           placeholder="Enter a number to convert"
           {...register('number', { required: true, min: 0 })}
         />
+      </label>
+      <label className={styles.checkboxLabel}>
+        <input
+          className={styles.checkbox}
+          type="checkbox"
+          {...register('shouldUseDictionary')}
+        />
+        <span className="text-sm ml-1">Only English words</span>
       </label>
       <button className={styles.submitButton} type="submit">
         Submit

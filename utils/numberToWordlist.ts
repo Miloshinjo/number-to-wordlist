@@ -35,6 +35,25 @@ function combineArrays([
 }
 
 /**
+ * Validates a number if it can be converted at all
+ *
+ * @param number Number to convert to it's digits
+ * @returns      Whether the number is valid or not
+ */
+function validateNumber(number: number): boolean {
+  if (
+    !number
+      .toString()
+      .split('')
+      .some((num) => parseInt(num, 10) > 1)
+  ) {
+    return false;
+  }
+
+  return true;
+}
+
+/**
  * Converts a nubmer into an array of its digits
  *
  * @param number Number to convert to it's digits
@@ -50,8 +69,10 @@ function convertNumberToDigits(number: number): Array<number> {
  * @param number A number to turn into a wordlist
  * @returns A list of words that are possible combinations of a given number
  */
-export function numberToWordlist(number: number): Wordlist {
-  if (number < 2) return [];
+export function convertNumberToWordlist(number: number): Wordlist {
+  if (validateNumber(number) === false) {
+    return [];
+  }
 
   const digits = convertNumberToDigits(number);
 

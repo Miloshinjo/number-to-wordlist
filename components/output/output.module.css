@@ -1,9 +1,13 @@
 .container {
-  @apply h-full p-4;
+  @apply flex flex-col items-center justify-center h-full text-center;
 }
 
-.fetchingContainer {
-  @apply flex items-center justify-center h-full opacity-75;
+.resultsContainer {
+  @apply p-4 h-full;
+}
+
+.infoHeading {
+  @apply text-gray-800;
 }
 
 .heading {
@@ -19,5 +23,5 @@
 }
 
 .word {
-   @apply text-sm font-medium mr-2;
+  @apply text-sm font-medium mr-2;
 }

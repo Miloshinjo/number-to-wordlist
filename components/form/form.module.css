@@ -2,26 +2,22 @@
   @apply shadow p-4 flex flex-col items-end rounded;
 }
 
-.label {
+.inputLabel {
   @apply flex flex-col text-sm font-semibold text-gray-700;
 }
 
 .input {
-  @apply text-base border p-2 w-64 mt-1;
-  -moz-appearance: textfield;
+  @apply p-2 w-64 mt-1;
 }
 
 .input::placeholder {
-  @apply text-sm
+  @apply text-sm;
 }
 
-.input::-webkit-inner-spin-button,
-.input::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+.checkboxLabel {
+  @apply flex items-center text-gray-600 self-start mt-2 font-medium;
 }
 
 .submitButton {
   @apply bg-indigo-500 px-4 py-2 text-white font-bold text-sm mt-4;
 }
-

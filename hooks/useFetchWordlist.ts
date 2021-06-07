@@ -12,13 +12,33 @@ function fetcher(url: string): Promise<WordlistResult> {
 }
 
 /**
+ * Generates an url based on the user data
+ *
+ * @param number              Number that we want wordlist for
+ * @param shouldUseDictionary Whether to use dictionary or not
+ * @returns                   Fetch wordlist url
+ */
+function generateWordlistUrl(
+  number: number,
+  shouldUseDictionary: boolean
+): string {
+  const baseUrl = `/api/wordlist/${number}`;
+
+  if (shouldUseDictionary === true) {
+    return baseUrl + '?filter=dictionary';
+  }
+
+  return baseUrl;
+}
+
+/**
  * React hook that fetches the wordlist from the API
  *
  * @returns A tuple of a wordlist and a fetch function for it
  */
 export function useFetchWordlist(): [
   WordlistResult['wordlist'] | null,
-  (number: number) => Promise<void>,
+  (number: number, shouldUseDictionary: boolean) => Promise<void>,
   boolean,
   string
 ] {
@@ -27,10 +47,15 @@ export function useFetchWordlist(): [
   const [wordlist, setWordlist] =
     useState<WordlistResult['wordlist'] | null>(null);
 
-  async function fetchWordlist(number: number): Promise<void> {
+  async function fetchWordlist(
+    number: number,
+    shouldUseDictionary: boolean
+  ): Promise<void> {
     setFetching(true);
     try {
-      const { wordlist } = await fetcher(`/api/wordlist/${number}`);
+      const { wordlist } = await fetcher(
+        generateWordlistUrl(number, shouldUseDictionary)
+      );
 
       setError('');
       setWordlist(wordlist);

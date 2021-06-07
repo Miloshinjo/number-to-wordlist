@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { WordlistResult } from '../../../models/wordlist';
-import { numberToWordlist } from '../../../utils/numberToWordlist';
+import { convertNumberToWordlist } from '../../../utils/numberToWordlist';
 
 import { dictionary } from '../../../data/englishWords';
 
@@ -21,21 +21,27 @@ function handleGet(
   res: NextApiResponse<WordlistResult>
 ): void {
   const {
-    query: { number },
+    query: { number, filter },
   } = req;
 
   if (!number) {
     res.status(404).end('Please provide a number to convert');
   }
 
-  const wordlist = numberToWordlist(Number(number));
+  const wordlist = convertNumberToWordlist(Number(number));
 
-  // const filteredWordlist = wordlist.filter((value) =>
-  //   dictionary.includes(value)
-  // );
+  if (filter === 'dictionary') {
+    const filteredWordlist = wordlist.filter((value) =>
+      dictionary.includes(value)
+    );
 
-  res.status(200).json({
-    wordlist: wordlist,
+    return res.status(200).json({
+      wordlist: filteredWordlist,
+    });
+  }
+
+  return res.status(200).json({
+    wordlist,
   });
 }
 

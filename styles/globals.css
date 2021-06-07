@@ -1,11 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind screens;
 
 body {
   @apply antialiased text-gray-900;
 }
 
-button, input {
+button,
+input {
   @apply focus:outline-none focus:ring;
 }

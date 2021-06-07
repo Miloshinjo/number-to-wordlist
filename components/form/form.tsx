@@ -10,7 +10,7 @@ type Inputs = {
 export type Props = {
   fetchWordlist: (
     number: number,
-    shouldUseDictionary: boolean
+    shouldUseDictionary: boolean,
   ) => Promise<void>;
 };
 

@@ -1,5 +1,5 @@
 .container {
-  @apply flex flex-col items-center justify-center h-full text-center;
+  @apply flex flex-col items-center justify-center h-full text-center w-full;
 }
 
 .resultsContainer {
@@ -19,9 +19,15 @@
 }
 
 .list {
-  @apply overflow-auto gap-1 mt-4 flex flex-wrap;
+  @apply flex gap-1 mt-4 flex-wrap;
 }
 
 .word {
   @apply mr-2;
+}
+
+@screen lg {
+  .list {
+    @apply flex flex-wrap;
+  }
 }

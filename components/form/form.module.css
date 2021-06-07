@@ -1,5 +1,5 @@
 .form {
-  @apply shadow p-4 flex flex-col items-end rounded bg-white;
+  @apply flex flex-col items-end rounded;
 }
 
 .inputLabel {
@@ -20,4 +20,10 @@
 
 .submitButton {
   @apply bg-indigo-500 px-4 py-2 text-white font-bold text-sm mt-4;
+}
+
+@screen lg {
+  .form {
+    @apply shadow p-4 bg-white my-6;
+  }
 }

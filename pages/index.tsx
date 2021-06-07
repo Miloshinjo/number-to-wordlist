@@ -23,7 +23,7 @@ export default function Home(): JSX.Element {
       <div className={styles.container}>
         <header className={styles.header}>
           <h1 className={styles.headerHeading}>
-            Number to WordList ConverterX 3000
+            Number to WordList ConverterX T9 3000
           </h1>
         </header>
         <main className={styles.main}>

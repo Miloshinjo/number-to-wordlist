@@ -1,10 +1,9 @@
 import { Wordlist } from '../../models/wordlist';
 import { Loader } from '../loader/loader';
-import Image from 'next/image';
 
 import styles from './output.module.css';
 
-type Props = {
+export type Props = {
   isFetching: boolean;
   error: string;
   wordlist: Wordlist | null;
@@ -23,10 +22,9 @@ export function Output({ isFetching, error, wordlist }: Props): JSX.Element {
     return <div className={styles.container}>{error}</div>;
   }
 
-  if (wordlist === null) {
-    return <div className={styles.container}>Generate your wordlist</div>;
-  }
-
+  /**
+   * Currently fetching from the backend
+   */
   if (isFetching === true) {
     return (
       <div className={styles.container}>
@@ -35,6 +33,20 @@ export function Output({ isFetching, error, wordlist }: Props): JSX.Element {
     );
   }
 
+  /**
+   * No search happened
+   */
+  if (wordlist === null) {
+    return (
+      <div className={styles.container}>
+        <h4 className={styles.infoHeading}>Generate your wordlist</h4>
+      </div>
+    );
+  }
+
+  /**
+   * No results for our number
+   */
   if (wordlist.length === 0) {
     return (
       <div className={styles.container}>
@@ -48,7 +60,7 @@ export function Output({ isFetching, error, wordlist }: Props): JSX.Element {
   return (
     <div className={styles.resultsContainer}>
       <h2 className={styles.heading}>
-        Number of words:{' '}
+        Word Count:{' '}
         <span className={styles.headingNumber}>{wordlist.length}</span>
       </h2>
       <ul className={styles.list}>

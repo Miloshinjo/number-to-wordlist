@@ -1,9 +1,9 @@
 .container {
   display: grid;
   grid-template-areas:
-  'header header'
-  'main sidebar'
-  'footer footer';
+    'header header'
+    'main sidebar'
+    'footer footer';
   grid-template-columns: 1fr 40%;
   grid-template-rows: min-content 1fr min-content;
   height: 100vh;
@@ -12,7 +12,7 @@
 
 .main {
   grid-area: main;
-  @apply flex items-center justify-center;
+  @apply flex items-center justify-center bg-gray-100;
 }
 
 .header {

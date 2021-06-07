@@ -7,7 +7,7 @@ type Inputs = {
   shouldUseDictionary: boolean;
 };
 
-type Props = {
+export type Props = {
   fetchWordlist: (
     number: number,
     shouldUseDictionary: boolean
@@ -28,7 +28,11 @@ export function Form({ fetchWordlist }: Props): JSX.Element {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className={styles.form}
+      aria-label="Number to Wordlist form"
+    >
       <label className={styles.inputLabel}>
         Number input
         <input

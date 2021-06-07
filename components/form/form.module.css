@@ -1,9 +1,9 @@
 .form {
-  @apply shadow p-4 flex flex-col items-end rounded;
+  @apply shadow p-4 flex flex-col items-end rounded bg-white;
 }
 
 .inputLabel {
-  @apply flex flex-col text-sm font-semibold text-gray-700;
+  @apply flex flex-col text-sm font-semibold text-gray-600;
 }
 
 .input {

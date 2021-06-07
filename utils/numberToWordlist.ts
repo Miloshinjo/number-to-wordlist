@@ -2,7 +2,7 @@ import { Wordlist } from '../models/wordlist';
 
 type LettersMatrix = Array<Array<string>>;
 
-const mapping = new Map<number, string | Array<string>>([
+export const mapping = new Map<number, string | Array<string>>([
   [2, ['a', 'b', 'c']],
   [3, ['d', 'e', 'f']],
   [4, ['g', 'h', 'i']],
@@ -19,7 +19,7 @@ const mapping = new Map<number, string | Array<string>>([
  * @param  LettersMatrix  Matrix that is iterated over to create a wordlist
  * @returns               A list of possible words
  */
-function combineArrays([
+export function combineArrays([
   head,
   ...[headTail, ...tail]
 ]: LettersMatrix): Array<string> {
@@ -40,7 +40,7 @@ function combineArrays([
  * @param number Number to convert to it's digits
  * @returns      Whether the number is valid or not
  */
-function validateNumber(number: number): boolean {
+export function validateNumber(number: number): boolean {
   if (
     !number
       .toString()
@@ -59,7 +59,7 @@ function validateNumber(number: number): boolean {
  * @param number Number to convert to it's digits
  * @returns      An array of digits for a given number
  */
-function convertNumberToDigits(number: number): Array<number> {
+export function convertNumberToDigits(number: number): Array<number> {
   return number.toString().split('').map(Number);
 }
 

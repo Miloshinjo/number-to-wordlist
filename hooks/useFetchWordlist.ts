@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { WordlistResult } from '../models/wordlist';
+import { WordlistError, WordlistResult } from '../models/wordlist';
 
 /**
  * Fetch function abstraction to lower the steps of use
@@ -7,7 +7,7 @@ import { WordlistResult } from '../models/wordlist';
  * @param url Endpoint route
  * @returns   Fetch function
  */
-function fetcher(url: string): Promise<WordlistResult> {
+function fetcher(url: string): Promise<WordlistResult & WordlistError> {
   return fetch(url).then((res) => res.json());
 }
 
@@ -60,15 +60,22 @@ export function useFetchWordlist(): [
   ): Promise<void> {
     setFetching(true);
     try {
-      const { wordlist } = await fetcher(
+      const result = await fetcher(
         generateWordlistUrl(number, shouldUseDictionary),
       );
 
+      console.log('error', result.error);
+
+      if (result.error) {
+        setError(result.error);
+        return;
+      }
+
       setError('');
-      setWordlist(wordlist);
+      setWordlist(result.wordlist);
     } catch (error) {
       console.error(error);
-      setError('An error occured.');
+      setError('An error occured');
     } finally {
       setFetching(false);
     }

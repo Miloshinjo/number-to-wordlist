@@ -1,8 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { WordlistResult } from '../../../models/wordlist';
+import { WordlistResult, WordlistError } from '../../../models/wordlist';
 import { convertNumberToWordlist } from '../../../utils/numberToWordlist';
 
 import { dictionary } from '../../../data/englishWords';
+
+const numberLimit = 10;
 
 export const config = {
   api: {
@@ -18,14 +20,22 @@ export const config = {
  */
 function handleGet(
   req: NextApiRequest,
-  res: NextApiResponse<WordlistResult>,
+  res: NextApiResponse<WordlistResult | WordlistError>,
 ): void {
   const {
     query: { number, filter },
   } = req;
 
   if (!number) {
-    res.status(404).end('Please provide a number to convert');
+    return res.status(400).end({
+      error: 'Please provide a number to convert.',
+    });
+  }
+
+  if (number.toString().length > numberLimit) {
+    return res.status(400).json({
+      error: `Apologies, but all numbers with over ${numberLimit} digits are not part of this free tier. Please limit your requests to ${numberLimit} letters or lower, or consider becoming a subscriber.`,
+    });
   }
 
   const wordlist = convertNumberToWordlist(Number(number));
@@ -53,7 +63,7 @@ function handleGet(
  */
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<WordlistResult>,
+  res: NextApiResponse<WordlistResult | WordlistError>,
 ): void {
   const { method } = req;
 

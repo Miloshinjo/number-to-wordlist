@@ -67,7 +67,6 @@ export function Form({ fetchWordlist }: Props): JSX.Element {
           {...register('number', {
             required: true,
             min: 0,
-            max: 10000000000000,
           })}
         />
       </label>

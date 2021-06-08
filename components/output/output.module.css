@@ -1,5 +1,5 @@
 .container {
-  @apply flex flex-col items-center justify-center h-full text-center w-full;
+  @apply flex flex-col items-center justify-center h-full text-center w-full p-4;
 }
 
 .resultsContainer {

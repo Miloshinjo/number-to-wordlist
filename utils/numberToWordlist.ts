@@ -19,19 +19,11 @@ export const mapping = new Map<number, string | Array<string>>([
  * @param  LettersMatrix  Matrix that is iterated over to create a wordlist
  * @returns               A list of possible words
  */
-export function combineArrays([
-  head,
-  ...[headTail, ...tail]
-]: LettersMatrix): Array<string> {
-  if (!headTail) {
-    return head;
-  }
-
-  const combined = headTail.reduce((total, current) => {
-    return total.concat(head.map((h: string) => `${h}${current}`));
-  }, [] as string[]);
-
-  return combineArrays([combined, ...tail]);
+export function combineArrays(lettersMatrix: LettersMatrix): Array<string> {
+  return lettersMatrix.reduce(
+    (a, b) => a.flatMap((x) => b.map((y) => x + y)),
+    [''],
+  );
 }
 
 /**

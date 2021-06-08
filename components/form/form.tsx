@@ -64,7 +64,11 @@ export function Form({ fetchWordlist }: Props): JSX.Element {
           type="number"
           className={styles.input}
           placeholder="Enter a number to convert"
-          {...register('number', { required: true, min: 0 })}
+          {...register('number', {
+            required: true,
+            min: 0,
+            max: 10000000000000,
+          })}
         />
       </label>
       <Keyboard setInputValue={setInputValue} backspaceValue={backspaceValue} />

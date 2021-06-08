@@ -18,7 +18,7 @@ export const config = {
  */
 function handleGet(
   req: NextApiRequest,
-  res: NextApiResponse<WordlistResult>
+  res: NextApiResponse<WordlistResult>,
 ): void {
   const {
     query: { number, filter },
@@ -32,7 +32,7 @@ function handleGet(
 
   if (filter === 'dictionary') {
     const filteredWordlist = wordlist.filter((value) =>
-      dictionary.includes(value)
+      dictionary.includes(value),
     );
 
     return res.status(200).json({
@@ -53,7 +53,7 @@ function handleGet(
  */
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<WordlistResult>
+  res: NextApiResponse<WordlistResult>,
 ): void {
   const { method } = req;
 

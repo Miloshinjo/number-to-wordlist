@@ -4,7 +4,7 @@ import { convertNumberToWordlist } from '../../../utils/numberToWordlist';
 
 import { dictionary } from '../../../data/englishWords';
 
-const numberLimit = 12;
+const numberLimit = 10;
 
 export const config = {
   api: {

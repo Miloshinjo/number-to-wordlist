@@ -47,6 +47,13 @@ export function useFetchWordlist(): [
   const [wordlist, setWordlist] =
     useState<WordlistResult['wordlist'] | null>(null);
 
+  /**
+   * Fetches the wordlist data from the API
+   *
+   * @param number               Number parameter to be converted to wordlist
+   * @param shouldUseDictionary  Whether to use dictionary to compare words or not
+   * @returns                    void
+   */
   async function fetchWordlist(
     number: number,
     shouldUseDictionary: boolean,

@@ -9,5 +9,5 @@ body {
 
 button,
 input {
-  @apply focus:outline-none focus:ring;
+  @apply focus:outline-none focus:ring-2 ring-blue-300;
 }

@@ -1,11 +1,11 @@
 import { Form } from '../components/form/form';
-import { Keyboard } from '../components/keyboard/keyboard';
 
 import Head from 'next/head';
 import { Output } from '../components/output/output';
 import { useFetchWordlist } from '../hooks/useFetchWordlist';
 
 import styles from './index.module.css';
+import { Keyboard } from '../components/keyboard/keyboard';
 
 /**
  * Application home page route.

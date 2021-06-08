@@ -1,9 +1,10 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { Keyboard } from '../keyboard/keyboard';
 
 import styles from './form.module.css';
 
 type Inputs = {
-  number: number;
+  number: string;
   shouldUseDictionary: boolean;
 };
 
@@ -21,11 +22,35 @@ export type Props = {
  * @returns               A form that submits the number to the backend for interpolation
  */
 export function Form({ fetchWordlist }: Props): JSX.Element {
-  const { register, handleSubmit } = useForm<Inputs>();
+  const { register, handleSubmit, setValue, watch } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    fetchWordlist(data.number, data.shouldUseDictionary);
+    fetchWordlist(parseInt(data.number, 10), data.shouldUseDictionary);
   };
+
+  /**
+   * Programatically sets value of the number input
+   *
+   * @param value Number value to set
+   */
+  function setInputValue(value: string): void {
+    setValue('number', watch('number') + value, {
+      shouldDirty: true,
+      shouldValidate: true,
+      shouldTouch: true,
+    });
+  }
+
+  /**
+   * Programatically trims the last character from the value
+   */
+  function backspaceValue(): void {
+    setValue('number', watch('number').slice(0, -1), {
+      shouldDirty: true,
+      shouldValidate: true,
+      shouldTouch: true,
+    });
+  }
 
   return (
     <form
@@ -42,6 +67,7 @@ export function Form({ fetchWordlist }: Props): JSX.Element {
           {...register('number', { required: true, min: 0 })}
         />
       </label>
+      <Keyboard setInputValue={setInputValue} backspaceValue={backspaceValue} />
       <label className={styles.checkboxLabel}>
         <input
           className={styles.checkbox}
@@ -50,6 +76,7 @@ export function Form({ fetchWordlist }: Props): JSX.Element {
         />
         <span className="text-sm ml-1">Only English words</span>
       </label>
+
       <button className={styles.submitButton} type="submit">
         Submit
       </button>

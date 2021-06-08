@@ -1,15 +1,30 @@
 .container {
-  @apply p-6 grid grid-cols-3 gap-4;
+  @apply hidden;
 }
 
-.button {
-  @apply flex flex-col items-center justify-center border-gray-900 w-8 h-8 p-8;
-}
+@screen lg {
+  .container {
+    @apply grid grid-cols-3 w-full mt-2 gap-1;
+  }
 
-.buttonNumber {
-  @apply text-2xl font-semibold;
-}
+  .button {
+    @apply flex p-2 rounded-none justify-center text-center items-center flex-col border border-gray-100;
+  }
 
-.buttonLetters {
-  @apply text-lg text-gray-700;
+  .button:active {
+    transform: translateY(1px);
+    @apply shadow-inner transition-transform duration-75;
+  }
+
+  .button:nth-child(10) {
+    grid-column: 2 / span 1;
+  }
+
+  .buttonNumber {
+    @apply flex text-sm;
+  }
+
+  .buttonLetters {
+    @apply text-xs text-gray-700;
+  }
 }

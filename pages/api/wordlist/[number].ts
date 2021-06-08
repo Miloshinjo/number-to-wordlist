@@ -41,9 +41,7 @@ function handleGet(
   const wordlist = convertNumberToWordlist(Number(number));
 
   if (filter === 'dictionary') {
-    const filteredWordlist = wordlist.filter((value) =>
-      dictionary.includes(value),
-    );
+    const filteredWordlist = wordlist.filter((value) => dictionary.has(value));
 
     return res.status(200).json({
       wordlist: filteredWordlist,

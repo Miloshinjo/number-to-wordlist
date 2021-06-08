@@ -1,4 +1,4 @@
-export const dictionary = [
+export const dictionary = new Set([
   'aardvark',
   'aardvarks',
   "aardvark's",
@@ -79766,4 +79766,4 @@ export const dictionary = [
   "zygote's",
   'zygotes',
   'zymurgy',
-];
+]);

@@ -2,7 +2,7 @@ import { items } from './items';
 
 import styles from './keyboard.module.css';
 
-type Props = {
+export type Props = {
   setInputValue: (value: string) => void;
   backspaceValue: () => void;
 };

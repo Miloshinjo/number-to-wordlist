@@ -32,7 +32,12 @@ export default function Home(): JSX.Element {
         <aside className={styles.sidebar}>
           <Output wordlist={wordlist} isFetching={isFetching} error={error} />
         </aside>
-        <footer className={styles.footer}>Created by Milos Dzeletovic</footer>
+        <footer className={styles.footer}>
+          Created by Milos Dzeletovic{' '}
+          <span role="img" aria-label="Rocket Emoji">
+            🚀
+          </span>
+        </footer>
       </div>
     </>
   );

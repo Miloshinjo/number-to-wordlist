@@ -64,8 +64,6 @@ export function useFetchWordlist(): [
         generateWordlistUrl(number, shouldUseDictionary),
       );
 
-      console.log('error', result.error);
-
       if (result.error) {
         setError(result.error);
         return;
